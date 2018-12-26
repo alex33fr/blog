@@ -1,6 +1,6 @@
 <?php
 
-//Tentative de connexion à la base de données
+/*Tentative de connexion à la base de données*/
 try {
     $connection = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root','');
 }
