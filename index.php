@@ -2,37 +2,29 @@
 /**
  * Created by PhpStorm.
  * User: Alex
- * Date: 01/01/2019
- * Time: 21:17
+ * Date: 26/12/2018
+ * Time: 07:55
  */
+require ('controller/controller.php');
+require ('src/DAO/db.php');
 
-require('controller/frontend.php');
+?>
 
-try {
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
-            listPosts();
-        } elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            } else {
-                throw new \Exception('Aucun identifiant de billet envoyé');
-            }
-        } elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-                } else {
-                    throw new \Exception('Tous les champs ne sont pas remplis');
-                }
-            } else {
-                throw new \Exception('Aucun identifiant de billet envoyé');
-            }
-        }
-    } else {
-        listPosts();
-    }
-}
-catch (\Exception $e){
-    die('Error : '.$e->getMessage());
-}
+<!-- Affichage HTML -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Blog | Jean Forteroche</title>
+    </head>
+
+    <body>
+        <h1>La premiere page du blog</h1>
+        <p>Affichage des billets</p>
+                <?php
+                $commentsDAO = $connection->query('SELECT id, post_id, author, comment, comment_date FROM comments');
+                $comments = $commentsDAO->fetch();
+                echo $comments['id'] . $comments['post_id'] . $comments['author'] . $comments['comment'] . $comments['comment_date'];
+                ?>
+    </body>
+</html>
