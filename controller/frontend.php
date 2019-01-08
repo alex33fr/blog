@@ -10,8 +10,8 @@
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
-use \Alex\Blog\Model\PostManager;
-use \Alex\Blog\Model\CommentManager;
+use Blog\Model\PostManager;
+use Blog\Model\CommentManager;
 
 function listPosts()
 {

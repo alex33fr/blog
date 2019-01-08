@@ -2,15 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Alex
- * Date: 02/01/2019
- * Time: 00:37
+ * Date: 01/01/2019
+ * Time: 22:20
  */
+?>
+<?php $title = "Oups !" ?>
+<?php ob_start(); ?>
 
-require('controller/frontend.php');
+    <h1>Une erreur</h1>
+    <p> <?= $errorMessage ?></p>
+<?php $content = ob_get_clean(); ?>
 
-try {
-}
-catch(Exception $e) {
-    $errorMessage = $e->getMessage();
-    require('view/errorView.php');
-}
+<?php require('template.php'); ?>

@@ -1,21 +1,15 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Alex
- * Date: 01/01/2019
- * Time: 23:01
- */
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <title><?= $title ?></title>
-<link href="../../public/css/style.css" rel="stylesheet" />
+<link href="public/css/style.css" rel="stylesheet" />
 </head>
 
 <body>
+<header>
+    Mon menu de site
+</header>
 <?= $content ?>
 </body>
 </html>

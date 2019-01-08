@@ -6,9 +6,10 @@
  * Time: 00:56
  */
 
-namespace Alex\Blog\Model;
+namespace Blog\Model;
 
-require_once("model/Manager.php");
+require 'Autoloader.php';
+\Autoloader::register();
 
 class CommentManager extends Manager
 {
@@ -17,7 +18,6 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
         $comments->execute(array($postId));
-
         return $comments;
     }
 

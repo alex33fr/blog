@@ -6,7 +6,7 @@
  * Time: 00:56
  */
 
-namespace Alex\Blog\Model;
+namespace Blog\Model;
 
 require_once("model/Manager.php");
 

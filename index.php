@@ -8,6 +8,8 @@
 
 require('controller/frontend.php');
 
+
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
@@ -34,5 +36,6 @@ try {
     }
 }
 catch (\Exception $e){
-    die('Error : '.$e->getMessage());
+    $errorMessage = $e->getMessage();
+    require('view/frontend/errorView.php');
 }

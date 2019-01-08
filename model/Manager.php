@@ -6,7 +6,7 @@
  * Time: 01:14
  */
 
-namespace Alex\Blog\Model;
+namespace Blog\Model;
 
 class Manager{
 
