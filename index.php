@@ -6,36 +6,47 @@
  * Time: 21:17
  */
 
-require('controller/frontend.php');
+require 'config/config.php';
+require 'Framework\Autoloader.php';
+\Blog\Framework\Autoloader::register();
 
-
+session_start();
+$frontController = new \Blog\Controller\FrontController();
+$backController = new \Blog\Controller\BackController();
 
 try {
-    if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'listPosts') {
-            listPosts();
-        } elseif ($_GET['action'] == 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            } else {
-                throw new \Exception('Aucun identifiant de billet envoyé');
-            }
-        } elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
-                } else {
-                    throw new \Exception('Tous les champs ne sont pas remplis');
-                }
-            } else {
-                throw new \Exception('Aucun identifiant de billet envoyé');
-            }
-        }
-    } else {
-        listPosts();
+
+    $action = $_GET['action'] ?? 'listPosts';
+
+    switch ($action) {
+        case 'listPosts':
+            $frontController->listPosts();
+            break;
+        case 'post':
+            $frontController->post();
+            break;
+        case 'addComment':
+            $frontController->addComment();
+            break;
+        case 'register':
+            $frontController->register();
+            break;
+        case 'login':
+            $frontController->login();
+            break;
+        case 'deletePost':
+            $backController->deletePost();
+            break;
+        default:
+            throw new \Exception("Action invalide");
     }
-}
-catch (\Exception $e){
+
+
+} catch (\Exception $e) {
     $errorMessage = $e->getMessage();
-    require('view/frontend/errorView.php');
+    require('view/frontend/error.php');
 }
+
+
+
+

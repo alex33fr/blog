@@ -8,7 +8,7 @@
 
 namespace Blog\Model;
 
-require_once("model/Manager.php");
+use Blog\Framework\Manager;
 
 class PostManager extends Manager
 {

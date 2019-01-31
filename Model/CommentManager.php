@@ -8,8 +8,7 @@
 
 namespace Blog\Model;
 
-require 'Autoloader.php';
-\Autoloader::register();
+use Blog\Framework\Manager;
 
 class CommentManager extends Manager
 {
