@@ -8,12 +8,14 @@ use Blog\Model\CommentManager;
 use Blog\Model\PostManager;
 use Blog\Model\UserManager;
 
-
 class BackController extends AbstractController
 {
     private $postManager;
     private $commentManager;
 
+    /**
+     * BackController constructor.
+     */
     public function __construct()
     {
         $this->postManager = new PostManager();
@@ -24,16 +26,32 @@ class BackController extends AbstractController
     public function deletePost()
     {
         $this->checkAuthentication();
+        // TODO supprimer un article
+    }
+
+    public function dashboard(){
+        // TODO tableau de bord de l'administrateur
     }
 
     public function deleteComment(){
 
     }
 
+    public function validateComment(){
+        // TODO l'admin supprimer les signalements d'un commentaire
+    }
+
     public function editPost()
     {
+        
+        //TODO l'admin peut editer un article
 
     }
+
+    public function createPost(){
+        //TODO l'admin peut ajouter un article
+    }
+
 
     private function checkAuthentication()
     {

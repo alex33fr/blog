@@ -37,6 +37,18 @@ try {
         case 'deletePost':
             $backController->deletePost();
             break;
+        case 'createPost':
+            $backController->createPost();
+            break;
+        case 'editPost':
+            $backController->editPost();
+            break;
+        case 'validateComment':
+            $backController->validateComment();
+            break;
+        case 'deleteComment':
+            $backController->deleteComment();
+            break;
         default:
             throw new \Exception("Action invalide");
     }

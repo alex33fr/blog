@@ -28,4 +28,9 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+    public function deleteComment($deleteComment){
+        $db = $this->dbConnect();
+        $db->prepare('DELETE FROM comments WHERE post_id = $deleteComment');
+
+    }
 }

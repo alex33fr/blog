@@ -70,14 +70,9 @@
                 </tr>
             </table>
         </form>
-        <?php
-        if(isset($erreurs)) {
-            var_dump($erreurs);
-        }
-        ?>
     </div>
 
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>

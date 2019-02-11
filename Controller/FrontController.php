@@ -104,6 +104,10 @@ class FrontController extends AbstractController
     }
 
 
+    public function reportComment()
+    {
+// TODO un utilisateur peut signaler un commentaire
+    }
 
 
     public function login()

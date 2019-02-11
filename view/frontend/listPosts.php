@@ -9,8 +9,9 @@
     <?php $title = 'Blog | Mr Jean F'; ?>
     <?php ob_start(); ?>
 
-        <h1>Page d'acceuil du blog</h1>
-        <p>La liste des derniers billets sur ce blog :</p>
+        <h1>Acceuil du blog</h1>
+        <p>La liste des derniers billets sur ce blog:</p>
+        </br>
 
 
         <?php
@@ -18,10 +19,10 @@
         {
         ?>
         <div class="news">
-            <h3>
-                <?= htmlspecialchars($data['title']); ?>
-                <em>le <?= $data['date_create_fr']; ?></em>
-            </h3>
+            <h2>
+                <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']); ?></a>
+                <h5>le <?= $data['date_create_fr']; ?></h5>
+            </h2>
 
             <p>
             <?= nl2br(htmlspecialchars($data['contents'])); ?>
@@ -35,4 +36,4 @@
         ?>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/template.php'); ?>
