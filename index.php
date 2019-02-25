@@ -29,10 +29,16 @@ try {
             $frontController->addComment();
             break;
         case 'register':
-            $frontController->register();
+            $backController->register();
             break;
         case 'login':
             $frontController->login();
+            break;
+        case 'alertComment':
+            $frontController->alertComment();
+            break;
+        case 'logout':
+            $frontController->logout();
             break;
         case 'deletePost':
             $backController->deletePost();
@@ -45,6 +51,9 @@ try {
             break;
         case 'validateComment':
             $backController->validateComment();
+            break;
+        case 'dashboard':
+            $backController->dashboard();
             break;
         case 'deleteComment':
             $backController->deleteComment();

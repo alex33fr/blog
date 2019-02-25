@@ -21,7 +21,7 @@
                 <td><input type="password" placeholder="Votre mot de passe" id="password" name="password" value="<?php if(isset($password)) { echo $password; } ?>" /></td>
             </tr>
             <tr>
-                <td><input type="submit" name="login" value="login"></td>
+                <td><input type="submit" name="login" value="Se connecter"></td>
             </tr>
         </table>
     </form>

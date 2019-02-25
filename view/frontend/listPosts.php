@@ -9,7 +9,7 @@
     <?php $title = 'Blog | Mr Jean F'; ?>
     <?php ob_start(); ?>
 
-        <h1>Acceuil du blog</h1>
+        <h1>Accueil du blog</h1>
         <p>La liste des derniers billets sur ce blog:</p>
         </br>
 
@@ -22,6 +22,9 @@
             <h2>
                 <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']); ?></a>
                 <h5>le <?= $data['date_create_fr']; ?></h5>
+                <?php if (isset($_SESSION['user'])) : ?>
+                <a href="<?= BASE_URL ?>?action=deletePost&id=<?= $data['id'] ?>">Supprimer le post</a>
+                <?php endif; ?>
             </h2>
 
             <p>
@@ -33,6 +36,7 @@
         <?php
         }
         $posts->closeCursor();
+
         ?>
 <?php $content = ob_get_clean(); ?>
 

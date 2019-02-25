@@ -10,7 +10,7 @@
 <?php ob_start(); ?>
 
     <div>
-        <h2>Formulaire d'inscription</h2>
+        <h2 align="center">Formulaire d'inscription</h2>
         <form method="POST" action="">
             <table>
                 <tr>
@@ -75,4 +75,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/template.php'); ?>
+<?php require('view/templateAdmin.php'); ?>

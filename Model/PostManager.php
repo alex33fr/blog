@@ -12,6 +12,14 @@ use Blog\Framework\Manager;
 
 class PostManager extends Manager
 {
+    public function addPost($author,$title,$contents){
+
+        $db = $this->dbConnect();
+        $post = $db->prepare('INSERT INTO tickets (author,title,contents,date_create) VALUES(?,?,?, NOW())');
+        $affectedLines = $post->execute(array($author, $title, $contents));
+        return $affectedLines;
+    }
+
     public function getPosts(){
 
         $db = $this->dbConnect();
@@ -27,5 +35,13 @@ class PostManager extends Manager
         $post = $req->fetch();
 
         return $post;
+    }
+    public function deletePost($id){
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM tickets WHERE id = :id');
+
+        return $req->execute(['id' => $id]);
+
+
     }
 }

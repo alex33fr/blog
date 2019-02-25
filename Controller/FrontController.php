@@ -11,8 +11,12 @@ use Blog\Model\UserManager;
 
 class FrontController extends AbstractController
 {
+    /** @var PostManager */
     private $postManager;
+    /** @var CommentManager */
     private $commentManager;
+    /** @var UserManager */
+    private $userManager;
 
     public function __construct()
     {
@@ -58,57 +62,21 @@ class FrontController extends AbstractController
         }
     }
 
-    public function register()
-    {
-        $erreurs = [];
-
-        if (isset($_POST['formulary_register'])) {
-            $firstName = htmlspecialchars($_POST['first_name']);
-            $lastName = htmlspecialchars($_POST['last_name']);
-            $email = htmlspecialchars($_POST['email']);
-            $emailControl = htmlspecialchars($_POST['email_control']);
-            $password = $_POST['password'];
-            $passwordControl = $_POST['password_control'];
-
-            if (!empty($_POST['first_name']) AND !empty($_POST['last_name']) AND !empty($_POST['email']) AND !empty($_POST['email_control']) AND !empty($_POST['password']) AND !empty($_POST['password_control'])) {
-
-                if (strlen($firstName > 30)) {
-                    $erreurs[] = "Vous ne pouvez pas saisir un prenom de plus de 30 caractères";
-                }
-                if (strlen($lastName > 30)) {
-                    $erreurs[] = "Vous ne pouvez pas saisir un nom de plus de 30 caractères";
-                }
-                if ($emailControl != $email) {
-                    $erreurs[] = "Les emails ne correspondent pas";
-                }
-                if ($password != $passwordControl) {
-                    $erreurs[] = "Vos mots de passes ne correspondent pas !";
-                }
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $erreurs[] = "Votre adresse mail n'est pas valide";
-                }
-                if (!$this->userManager->checkAvailableEmail($email)) {
-
-                    $erreurs[] = "Cette adresse mail est déjà utilisée ";
-                }
-
-                if (count($erreurs) == 0) {
-                    $this->userManager->createUser($firstName, $lastName, $email, $password);
-                }
-
-            } else {
-                $erreurs[] = "Tous les champs doivent être complétés !";
-            }
-        }
-        $this->renderView('frontend/register', ['erreurs' => $erreurs]);
-    }
-
 
     public function reportComment()
     {
 // TODO un utilisateur peut signaler un commentaire
     }
 
+
+    public function alertComment()
+    {
+        // ajouter une colonne 'alert' dans ta table comments
+        // creer dans ton comment manager une methode permettant d'incrementer l'alert d'un commentaire donnée (id)
+
+
+        //rediriger vers la page contenant le commentaire
+    }
 
     public function login()
     {
@@ -140,5 +108,11 @@ class FrontController extends AbstractController
             $erreurs[] = "Tous les champs doivent être complétés !";
         }
         $this->renderView('frontend/login', ['erreurs' => $erreurs]);
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        $this->redirect('listPosts');
     }
 }

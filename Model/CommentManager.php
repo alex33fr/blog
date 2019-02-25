@@ -28,9 +28,19 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
-    public function deleteComment($deleteComment){
-        $db = $this->dbConnect();
-        $db->prepare('DELETE FROM comments WHERE post_id = $deleteComment');
 
+    public function deleteComment($id){
+        $db = $this->dbConnect();
+        $req = $db->prepare('DELETE FROM comments WHERE id = :id');
+
+        return $req->execute(['id' => $id]);
+
+    }
+    public function getComment($id)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('SELECT id, author,post_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = :id');
+        $comment->execute(array('id' => $id));
+        return $comment->fetch();
     }
 }
