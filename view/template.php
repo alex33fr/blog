@@ -35,6 +35,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
                     <a class="nav-link" href="<?= BASE_URL ?>">Accueil</a>
                 </li>
@@ -46,12 +47,12 @@
                     <a class="nav-link" href="<?= BASE_URL ?>?action=login">Se connecter</a>
                 </li>
                 <?php else: ?>
-                    <?= $this->redirect('dashboard'); ?>
+
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL ?>?action=logout">Se déconnecter</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href=""><?= $_SESSION['user'] ?></a>
+                         <a class="nav-link" href="<?= BASE_URL ?>?action=dashboard"><?= $_SESSION['user']['last_name'] ?> <?= $_SESSION['user']['first_name'] ?></a>
                     </li>
                 <?php endif; ?>
             </ul>

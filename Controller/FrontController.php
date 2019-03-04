@@ -37,6 +37,7 @@ class FrontController extends AbstractController
         $this->renderView('frontend/post', [
             'post' => $this->postManager->getPost($_GET['id']),
             'comments' => $this->commentManager->getComments($_GET['id'])
+
         ]);
     }
 
@@ -65,18 +66,20 @@ class FrontController extends AbstractController
 
     public function reportComment()
     {
-// TODO un utilisateur peut signaler un commentaire
+        $id = $_GET['id'];
+        $com = $this->commentManager->getComment($id);
+        if($com){
+            if($this->commentManager->alertCounter($id)){
+                $this->redirect('post', ['id' => $com['post_id'] ]);
+            }else{
+                throw new \Exception('Impossible de signaler le commentaire !');
+            }
+        }else{
+            throw new \Exception('Commentaire inexistant');
+
+        }
     }
 
-
-    public function alertComment()
-    {
-        // ajouter une colonne 'alert' dans ta table comments
-        // creer dans ton comment manager une methode permettant d'incrementer l'alert d'un commentaire donnée (id)
-
-
-        //rediriger vers la page contenant le commentaire
-    }
 
     public function login()
     {
@@ -95,9 +98,9 @@ class FrontController extends AbstractController
                     $user = $this->userManager->getUser($email);
                     if ($user) {
                         if (password_verify($password, $user['password'])) {
-                            $_SESSION['user'] = $user['first_name'];
+                            $_SESSION['user'] = $user;
 
-                            $this->redirect('listPosts');
+                            $this->redirect('dashboard');
                         }
                     }
                 } else {

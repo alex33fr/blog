@@ -34,8 +34,8 @@ try {
         case 'login':
             $frontController->login();
             break;
-        case 'alertComment':
-            $frontController->alertComment();
+        case 'reportComment':
+            $frontController->reportComment();
             break;
         case 'logout':
             $frontController->logout();
@@ -48,6 +48,9 @@ try {
             break;
         case 'editPost':
             $backController->editPost();
+            break;
+        case 'listComments':
+            $backController->listComments();
             break;
         case 'validateComment':
             $backController->validateComment();

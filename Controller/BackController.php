@@ -87,28 +87,52 @@ class BackController extends AbstractController
     public function dashboard()
     {
         $this->checkAuthentication();
-
+        $this->renderView('backend/dashboard');
     }
 
     public function deleteComment()
     {
         $this->checkAuthentication();
-        $com = $this->commentManager->getComment($_GET['id']);
 
+        $id = $_GET['id'];
+        $com = $this->commentManager->getComment($id);
         if($com){
             $this->commentManager->deleteComment($com['id']);
-            $this->redirect('post',['id' => $com['post_id']]);
+            $this->redirect('listComments');
         }else{
             throw new \Exception("Ce commentaire n'existe pas");
         }
 
     }
 
+
+    public function listComments(){
+        $this->checkAuthentication();
+        $this->renderView('backend/listComments', ['listComments' => $this->commentManager->getListComments()]);
+    }
+
+
+
     public function validateComment()
     {
         $this->checkAuthentication();
-        // TODO l'admin supprimer les signalements d'un commentaire
+
+        $id = $_GET['id'];
+        $com = $this->commentManager->getComment($id);
+        if($com){
+            if($this->commentManager->resetCounter($id)){
+                $this->commentManager->validateComment($id);
+                $this->redirect('listComments', ['id' => $com['post_id'] ]);
+            }else{
+                throw new \Exception('Impossible d\'Aprouver le commentaire !');
+            }
+        }else{
+            throw new \Exception('Le commentaire inexistant');
+
+        }
     }
+
+
 
     public function editPost()
     {

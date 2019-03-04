@@ -9,11 +9,6 @@
     <?php $title = 'Blog | Mr Jean F'; ?>
     <?php ob_start(); ?>
 
-        <h1>Accueil du blog</h1>
-        <p>La liste des derniers billets sur ce blog:</p>
-        </br>
-
-
         <?php
         while ($data = $posts->fetch())
         {
@@ -21,16 +16,12 @@
         <div class="news">
             <h2>
                 <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']); ?></a>
-                <h5>le <?= $data['date_create_fr']; ?></h5>
-                <?php if (isset($_SESSION['user'])) : ?>
-                <a href="<?= BASE_URL ?>?action=deletePost&id=<?= $data['id'] ?>">Supprimer le post</a>
-                <?php endif; ?>
+                <h5><?= $data['date_create_fr']; ?></h5>
             </h2>
-
             <p>
-            <?= nl2br(htmlspecialchars($data['contents'])); ?>
+            <?= nl2br(($data['contents'])); ?>
             <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
+            <a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a>
             </p>
         </div>
         <?php
