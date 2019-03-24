@@ -20,16 +20,10 @@ class CommentManager extends Manager
         return $comments;
     }
 
-    //public function getListComments()
-    //{
-    //    $db = $this->dbConnect();
-    //    $req = $db->query('SELECT id, post_id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE alert_counter > 0 ORDER BY alert_counter DESC');
-    //    return $req;
-   // }
-    public function getListComments()
+    public function getListReportedComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT a.title, b.post_id, b.id, b.author, b.comment, DATE_FORMAT(b.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM tickets AS a INNER JOIN comments AS b ON a.id = b.post_id WHERE b.alert_counter > 0 ORDER BY b.alert_counter DESC');
+        $req = $db->query('SELECT a.title, b.post_id, b.id, b.author, b.comment, b.alert_counter, DATE_FORMAT(b.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments AS b INNER JOIN tickets AS a ON a.id = b.post_id  ORDER BY b.alert_counter DESC, b.id DESC');
         return $req;
     }
 
@@ -66,7 +60,7 @@ class CommentManager extends Manager
     public function getComment($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT author, post_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = :id');
+        $req = $db->prepare('SELECT id, author, post_id, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE id = :id');
         $req->execute(array('id' => $id));
         return $req->fetch();
     }
@@ -82,7 +76,7 @@ class CommentManager extends Manager
     public function validateComment($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE comments SET validate_comment = true WHERE id = :id');
+        $req = $db->prepare('UPDATE comments SET validate_comment = 1 WHERE id = :id');
 
         return $req->execute(['id' => $id]);
     }

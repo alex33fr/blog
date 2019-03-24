@@ -78,7 +78,7 @@ class BackController extends AbstractController
 
         if($post){
             $this->postManager->deletePost($post['id']);
-            $this->redirect('post',['id' => $post['post_id']]);
+            $this->redirect('listPostsAdmin');
         }else{
             throw new \Exception("Ce post n'existe pas");
         }
@@ -96,6 +96,7 @@ class BackController extends AbstractController
 
         $id = $_GET['id'];
         $com = $this->commentManager->getComment($id);
+
         if($com){
             $this->commentManager->deleteComment($com['id']);
             $this->redirect('listComments');
@@ -108,7 +109,7 @@ class BackController extends AbstractController
 
     public function listComments(){
         $this->checkAuthentication();
-        $this->renderView('backend/listComments', ['listComments' => $this->commentManager->getListComments()]);
+        $this->renderView('backend/listComments', ['listComments' => $this->commentManager->getListReportedComments()]);
     }
 
 
@@ -132,13 +133,32 @@ class BackController extends AbstractController
         }
     }
 
-
+    public function listPostsAdmin()
+    {
+        $this->renderView('backend/listPostsAdmin', [
+            'posts' => $this->postManager->getPosts()
+        ]);
+    }
 
     public function editPost()
     {
         $this->checkAuthentication();
-        //TODO l'admin peut editer un article
 
+        $post = $this->postManager->getPost($_GET['id']);
+        if($post){
+            if(isset($_POST['title']) && isset($_POST['contents'])) {
+                $title = $_POST['title'];
+                $contents = $_POST['contents'];
+
+                $this->postManager->editPost($post['id'], $title, $contents);
+                $this->redirect('post', ['id' => $post['id']]);
+            }else{
+                $this->renderView('backend/editPost', ['data' => $post]);
+
+            }
+        }else{
+            throw new \Exception("Ce post n'existe pas");
+        }
     }
 
     public function createPost()

@@ -36,6 +36,18 @@ class PostManager extends Manager
 
         return $post;
     }
+
+    public function editPost($id,$title,$contents){
+
+        $db = $this->dbConnect();
+        $post = $db->prepare('UPDATE tickets SET title = :title, contents = :contents WHERE id = :id');
+        $affectedLines = $post->execute(array(
+            'title' => $title,
+            'contents' => $contents,
+            'id' => $id));
+        return $affectedLines;
+    }
+
     public function deletePost($id){
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM tickets WHERE id = :id');

@@ -7,6 +7,7 @@ use Blog\Framework\AbstractController;
 use Blog\Model\CommentManager;
 use Blog\Model\PostManager;
 use Blog\Model\UserManager;
+use mysql_xdevapi\Exception;
 
 
 class FrontController extends AbstractController
@@ -34,8 +35,15 @@ class FrontController extends AbstractController
 
     public function post()
     {
+        $post = $this->postManager->getPost($_GET['id']);
+
+        if(!$post){
+            throw new \Exception('Cette page n\'existe pas');
+        }
+
+
         $this->renderView('frontend/post', [
-            'post' => $this->postManager->getPost($_GET['id']),
+            'post' => $post,
             'comments' => $this->commentManager->getComments($_GET['id'])
 
         ]);

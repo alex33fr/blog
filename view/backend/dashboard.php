@@ -1,25 +1,30 @@
-<?php $title = "Dashboard"; ?>
+<?php $title = "Ajouter un article"; ?>
 <?php ob_start(); ?>
 
-    <h2>Publier un nouveau post</h2>
     <form action="<?= BASE_URL ?>?action=createPost" method="post">
-        <div>
-            <label for="title">Titre</label><br/>
-            <input type="text" id="title" name="title"/>
-        </div>
-        <div>
-            <script src="https://cloud.tinymce.com/5/tinymce.min.js? apiKey = t85s1gkpfpkpmqhqacg7cmokm4zlqtrb1icavaflwa6y3169"></script>
-            <script>tinymce.init({ selector:'textarea' });</script>
-            <label for="contents">Contenu</label><br/>
-            <textarea id="contents" name="contents"></textarea>
-        </div>
-        <div>
-            <input type="submit"/>
+        <div class="card mt-5 mb-5">
+
+            <div class="card-header">
+                <div class="bg-light text-dark text-center py-2">
+                    <h3><i class="fa"></i>Créer nouveau Post</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <!--Body-->
+                <div class="mb-2 py-1">
+                    <input class="form-control form-control-lg " type="text" id="title" name="title" minlength="3" placeholder="Titre du post" required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="contents" class="text-muted">Contenu</label>
+                    <textarea class="form-control form-control-lg editor" id="contents" name="contents" rows="3"></textarea>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" id="contents" value="Publier" class="btn btn-primary btn-block rounded-0 py-2">
+                </div>
+            </div>
         </div>
     </form>
-
-
-
 
 <?php $content = ob_get_clean(); ?>
 

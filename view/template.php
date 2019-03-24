@@ -39,10 +39,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?= BASE_URL ?>">Accueil</a>
                 </li>
+                <?php if(!isset($_SESSION['user'])) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= BASE_URL ?>?action=contact">Contact</a>
                 </li>
-                <?php if(!isset($_SESSION['user'])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>?action=register">Enregistrer</a>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= BASE_URL ?>?action=login">Se connecter</a>
                 </li>
@@ -75,17 +78,7 @@
 </header>
 <!-- Main Content -->
 <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
             <?= $content ?>
-            </div>
-            <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Lire la suite &rarr;</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 <hr>
@@ -113,7 +106,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#">
+                        <a href="https://github.com/alex33fr/blog">
                   <span class="fa-stack fa-lg">
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
@@ -121,7 +114,8 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Blog Mr Jean Forteroche 2019</p>
+                <p class="copyright mt-3 text-muted">Copyright &copy; Blog Jean Forteroche <?php $date = date("Y"); echo $date;?></p>
+
             </div>
         </div>
     </div>
@@ -129,6 +123,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="Bootstrap/vendor/jquery/jquery.min.js"></script>
 <script src="Bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="Bootstrap/js/clean-blog.min.js"></script>

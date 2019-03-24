@@ -5,8 +5,6 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
     <title><?= $title ?></title>
 
@@ -28,7 +26,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" style="color: #1d2124" href="index.php">Accueil (Frontend)</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -39,66 +37,52 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li>
-                    <a class="nav-link" href="<?= BASE_URL ?>?action=register">Créer l'utilisateur</a>
-                </li>
+                <!--  <li>  -->
+                    <!--       <a class="nav-link" href="<?= BASE_URL ?>?action=register">Créer l'utilisateur</a> -->
+                <!--  </li> -->
                 <li>
                     <a class="nav-link" href="<?= BASE_URL ?>?action=listComments">Commentaire signalées</a>
                 </li>
-                <li >
+                <li>
+                    <a class="nav-link" href="<?= BASE_URL ?>?action=listPostsAdmin">Liste des Posts</a>
+                </li>
+                <li>
                     <a class="nav-link" href="<?= BASE_URL ?>?action=logout">Se déconnecter</a>
                 </li>
-                <li class="nav-link">
-                    <?= $_SESSION['user']['last_name'] ?> <?= $_SESSION['user']['first_name'] ?>
+                <li>
+                    <a class="nav-link"
+                       href="<?= BASE_URL ?>?action=dashboard"><?= $_SESSION['user']['last_name'] ?> <?= $_SESSION['user']['first_name'] ?></a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <!-- Page Header -->
-<header class="masthead" style="background-color:#0018ff;">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-    </div>
-        </div>
-    </div>
+<header style="background-color:#0018ff;">
 </header>
+
 <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-preview">
-                <?= $content ?>
-            </div>
-            <!-- Pager -->
-        </div>
+<div class="container mt-5" style="padding-top: 60px;">
+        <?= $content ?>
+        <!-- Pager -->
     </div>
 </div>
-
 <hr>
 
 <!-- Footer -->
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item">
-                    </li>
-                </ul>
-                <p class="copyright text-muted">Copyright &copy; Blog Jean Forteroche 2019</p>
-            </div>
-        </div>
-    </div>
+    <p class="copyright text-muted">Copyright &copy; Blog Jean Forteroche 2019</p>
 </footer>
+
 <!-- Bootstrap core JavaScript -->
 <script src="Bootstrap/vendor/jquery/jquery.min.js"></script>
 <script src="Bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom scripts for this template -->
 <script src="Bootstrap/js/clean-blog.min.js"></script>
+<script src="public/tinymce/tinymce.min.js"></script>
+<script>tinymce.init({selector: 'textarea.editor',height:400});</script>
 
 </body>
 

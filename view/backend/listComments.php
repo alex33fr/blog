@@ -10,26 +10,32 @@
 <?php $title = "Moderation"; ?>
 <?php ob_start(); ?>
 
-<div></br>
-    </br>
-    </br>
+<div class="table-responsive text-center mt-5">
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Auteur</th>
+            <th scope="col">Signalements</th>
+            <th scope="col">Post</th>
+            <th scope="col">Commentaire</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
 
-<?php
-//la liste des commentaires
-
-while ($data = $listComments->fetch()) :  ?>
-    <p><strong><a href="<?= BASE_URL ?>?action=post&id=<?= $data['post_id'] ?>"><?= htmlspecialchars($data['title']) ?></a></strong> <p> <?= $data['comment_date_fr'] ?></p>
-    <h3>Auteur&nbsp;:&nbsp;<?= $data['author'] ?></h3>
-    <strong>Commentaire&nbsp;:&nbsp;</strong><p><?= nl2br(htmlspecialchars($data['comment'])) ?></p>
-
-    <!-- approuver le commentaire -->
-    <a href="<?= BASE_URL ?>?action=validateComment&id=<?= $data['id'] ?>">Valider le commentaire</a>
-
-
-    <!-- supprimer le commentaire -->
-    <a href="<?= BASE_URL ?>?action=deleteComment&id=<?= $data['id'] ?>">Supprimer le commentaire</a>
-
-<?php endwhile; ?>
+        <tbody>
+        <?php while ($data = $listComments->fetch()) :  ?>
+        <tr>
+            <th scope="row" class="text-nowrap"><?= $data['author'] ?></th>
+            <td><?= $data['alert_counter'] ?></td>
+            <td class="text-nowrap"><a href="index.php?action=post&id=<?= $data['post_id'] ?>"><?= htmlspecialchars($data['title']) ?></a></td>
+            <td><?= htmlspecialchars($data['comment']) ?></td>
+            <td><?= $data['comment_date_fr'] ?></td>
+            <td><a class="btn btn-success w-100 my-1" href="<?= BASE_URL ?>?action=validateComment&id=<?= $data['id'] ?>">Valider</a> <a class="btn btn-danger w-100" href="<?= BASE_URL ?>?action=deleteComment&id=<?= $data['id'] ?>">Supprimer</a></td>
+        </tr>
+        <?php endwhile; ?>
+        </tbody>
+    </table>
 </div>
 
 

@@ -22,6 +22,9 @@ try {
         case 'listPosts':
             $frontController->listPosts();
             break;
+        case 'listPostsAdmin':
+            $backController->listPostsAdmin();
+            break;
         case 'post':
             $frontController->post();
             break;
