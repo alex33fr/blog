@@ -23,7 +23,7 @@ class CommentManager extends Manager
     public function getListReportedComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT a.title, b.post_id, b.id, b.author, b.comment, b.alert_counter, DATE_FORMAT(b.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments AS b INNER JOIN tickets AS a ON a.id = b.post_id  ORDER BY b.alert_counter DESC, b.id DESC');
+        $req = $db->query('SELECT a.title, b.post_id, b.id, b.author, b.comment, b.alert_counter, b.validate_comment, DATE_FORMAT(b.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments AS b INNER JOIN tickets AS a ON a.id = b.post_id  ORDER BY b.alert_counter DESC, b.id DESC');
         return $req;
     }
 

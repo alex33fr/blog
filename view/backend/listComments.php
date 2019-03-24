@@ -31,7 +31,17 @@
             <td class="text-nowrap"><a href="index.php?action=post&id=<?= $data['post_id'] ?>"><?= htmlspecialchars($data['title']) ?></a></td>
             <td><?= htmlspecialchars($data['comment']) ?></td>
             <td><?= $data['comment_date_fr'] ?></td>
-            <td><a class="btn btn-success w-100 my-1" href="<?= BASE_URL ?>?action=validateComment&id=<?= $data['id'] ?>">Valider</a> <a class="btn btn-danger w-100" href="<?= BASE_URL ?>?action=deleteComment&id=<?= $data['id'] ?>">Supprimer</a></td>
+            <td>
+                <?php if ($data['validate_comment'] == 0): ?>
+                <a class="btn btn-success w-100 my-1" href="<?= BASE_URL ?>?action=validateComment&id=<?= $data['id'] ?>">Valider</a>
+                <?php endif; ?>
+
+                <?php if ($data['validate_comment'] == 1): ?>
+                    <div class="alert alert-success text-center text-muted" role="alert">
+                        Commentaire vérifié
+                    </div>
+                <?php endif; ?>
+                <a class="btn btn-danger w-100" href="<?= BASE_URL ?>?action=deleteComment&id=<?= $data['id'] ?>">Supprimer</a></td>
         </tr>
         <?php endwhile; ?>
         </tbody>

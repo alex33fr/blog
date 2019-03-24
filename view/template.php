@@ -41,16 +41,13 @@
                 </li>
                 <?php if(!isset($_SESSION['user'])) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= BASE_URL ?>?action=contact">Contact</a>
-                </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>?action=register">Enregistrer</a>
-                    </li>
-                <li class="nav-item">
                     <a class="nav-link" href="<?= BASE_URL ?>?action=login">Se connecter</a>
                 </li>
                 <?php else: ?>
-
+                    <!-- Formulaire d'inscription
+                     <li class="nav-item">
+                        <a class="nav-link" href="<?= BASE_URL ?>?action=register">S'enregistrer</a>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL ?>?action=logout">Se déconnecter</a>
                     </li>
