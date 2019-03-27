@@ -41,7 +41,7 @@
                             <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                         </div>
                         <input type="text" class="form-control" id="author" name="author"
-                               placeholder="Votre nom" minlength="3" maxlength="50" required>
+                               placeholder="Votre nom ou pseudo" minlength="3" maxlength="50" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,8 +49,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
                         </div>
-                        <textarea class="form-control" placeholder="Contenu ne doit pas dépasser 350 caractères." id="comment" name="comment"
-                                  minlength="3" maxlength="350" required></textarea>
+                        <textarea class="form-control" placeholder="Contenu ne doit pas dépasser 500 caractères." id="comment" name="comment"
+                                  minlength="3" maxlength="500" required></textarea>
                     </div>
                 </div>
 

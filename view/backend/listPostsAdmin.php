@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php $title = 'Liste des Posts'; ?>
+<?php $title = 'Liste des Posts Administrateur'; ?>
 <?php ob_start(); ?>
 
 

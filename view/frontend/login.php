@@ -16,9 +16,6 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Se connecter</h5>
-
-
-
                         <form action="" method='post' class="form-signin">
                             <div class="form-label-group">
                                 <input type="email" id="email" name="email" value="<?php if(isset($email)) { echo $email; } ?>" class="form-control mb-2"  placeholder="Email" required autofocus>
@@ -27,14 +24,9 @@
                             <div class="form-label-group">
                                 <input type="password" id="password" name="password" value="<?php if(isset($password)) { echo $password; } ?>" class="form-control mb-3" placeholder="Mot de passe" required>
                             </div>
-
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" name="login">Connecter</button>
                             <hr class="my-4">
                         </form>
-
-
-
-
                     </div>
                 </div>
             </div>

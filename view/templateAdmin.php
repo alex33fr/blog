@@ -9,17 +9,17 @@
     <title><?= $title ?></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="Bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="Bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="public/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
           type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
           rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="Bootstrap/css/clean-blog.min.css" rel="stylesheet">
+    <link href="public/bootstrap/css/clean-blog.min.css" rel="stylesheet">
 
 </head>
 
@@ -47,11 +47,13 @@
                     <a class="nav-link" href="<?= BASE_URL ?>?action=listPostsAdmin">Liste des Posts</a>
                 </li>
                 <li>
+                    <a class="nav-link" href="<?= BASE_URL ?>?action=editPassword">Changer mot de passe</a>
+                </li>
+                <li>
                     <a class="nav-link" href="<?= BASE_URL ?>?action=logout">Se déconnecter</a>
                 </li>
                 <li>
-                    <a class="nav-link"
-                       href="<?= BASE_URL ?>?action=dashboard"><?= $_SESSION['user']['last_name'] ?> <?= $_SESSION['user']['first_name'] ?></a>
+                    <a class="nav-link" href="<?= BASE_URL ?>?action=dashboard"><?= $_SESSION['user']['last_name'] ?> <?= $_SESSION['user']['first_name'] ?></a>
                 </li>
             </ul>
         </div>
@@ -75,12 +77,12 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="Bootstrap/vendor/jquery/jquery.min.js"></script>
-<script src="Bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="public/bootstrap/vendor/jquery/jquery.min.js"></script>
+<script src="public/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="Bootstrap/js/clean-blog.min.js"></script>
+<script src="public/bootstrap/js/clean-blog.min.js"></script>
 <script src="public/tinymce/tinymce.min.js"></script>
 <script>tinymce.init({selector: 'textarea.editor',height:400});</script>
 

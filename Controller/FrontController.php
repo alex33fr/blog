@@ -26,8 +26,7 @@ class FrontController extends AbstractController
         $this->userManager = new UserManager();
     }
 
-    public function listPosts()
-    {
+    public function listPosts(){
         $this->renderView('frontend/listPosts', [
             'posts' => $this->postManager->getPosts()
         ]);
@@ -91,7 +90,6 @@ class FrontController extends AbstractController
 
     public function login()
     {
-
         $erreurs = [];
 
         if (isset($_POST['login'])) {
@@ -107,7 +105,6 @@ class FrontController extends AbstractController
                     if ($user) {
                         if (password_verify($password, $user['password'])) {
                             $_SESSION['user'] = $user;
-
                             $this->redirect('dashboard');
                         }
                     }
@@ -116,7 +113,7 @@ class FrontController extends AbstractController
                 }
             }
         } else {
-            $erreurs[] = "Tous les champs doivent être complétés !";
+            $erreur[] = "Tous les champs doivent être complétés !";
         }
         $this->renderView('frontend/login', ['erreurs' => $erreurs]);
     }

@@ -5,7 +5,9 @@
  * Date: 01/01/2019
  * Time: 22:20
  */
+/*
 ?>
+<!--
 <?php $title = "S'enregister"; ?>
 <?php ob_start(); ?>
 

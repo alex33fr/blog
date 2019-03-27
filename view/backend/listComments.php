@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php $title = "Moderation"; ?>
+<?php $title = "Liste commentaires Administration"; ?>
 <?php ob_start(); ?>
 
 <div class="table-responsive text-center mt-5">
@@ -32,12 +32,12 @@
             <td><?= htmlspecialchars($data['comment']) ?></td>
             <td><?= $data['comment_date_fr'] ?></td>
             <td>
-                <?php if ($data['validate_comment'] == 0): ?>
+                <?php if ($data['validate_comment'] == 0 AND $data['alert_counter'] > 1): ?>
                 <a class="btn btn-success w-100 my-1" href="<?= BASE_URL ?>?action=validateComment&id=<?= $data['id'] ?>">Valider</a>
                 <?php endif; ?>
 
                 <?php if ($data['validate_comment'] == 1): ?>
-                    <div class="alert alert-success text-center text-muted" role="alert">
+                    <div class="alert alert-success text-center text-muted p-0" role="alert">
                         Commentaire vérifié
                     </div>
                 <?php endif; ?>

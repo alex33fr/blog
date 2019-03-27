@@ -31,11 +31,15 @@ try {
         case 'addComment':
             $frontController->addComment();
             break;
-        case 'register':
+        /*case 'register':
             $backController->register();
             break;
+        */
         case 'login':
             $frontController->login();
+            break;
+        case 'editPassword':
+            $backController->editPassword();
             break;
         case 'reportComment':
             $frontController->reportComment();

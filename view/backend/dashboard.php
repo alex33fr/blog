@@ -1,4 +1,4 @@
-<?php $title = "Ajouter un article"; ?>
+<?php $title = "Créer un nouveau Post"; ?>
 <?php ob_start(); ?>
 
     <form action="<?= BASE_URL ?>?action=createPost" method="post">
@@ -12,11 +12,12 @@
             <div class="card-body">
                 <!--Body-->
                 <div class="mb-2 py-1">
-                    <input class="form-control form-control-lg " type="text" id="title" name="title" minlength="3" placeholder="Titre du post" required>
+                    <label for="title" class="text-muted">Titre du Post</label>
+                    <input class="form-control form-control-lg " type="text" id="title" name="title" minlength="3" required>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="contents" class="text-muted">Contenu</label>
-                    <textarea class="form-control form-control-lg editor" id="contents" name="contents" rows="3"></textarea>
+                    <label for="contents" class="text-muted">Contenu du Post</label>
+                    <textarea class="form-control form-control-lg editor" id="contents" minlength="3" name="contents" rows="3" required></textarea>
                 </div>
 
                 <div class="text-center">

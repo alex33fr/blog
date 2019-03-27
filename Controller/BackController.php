@@ -24,6 +24,8 @@ class BackController extends AbstractController
         $this->userManager = new UserManager();
     }
 
+    /* Inscription
+
     public function register()
     {
 
@@ -70,6 +72,7 @@ class BackController extends AbstractController
         }
         $this->renderView('backend/register', ['erreurs' => $erreurs]);
     }
+    */
 
     public function deletePost()
     {
@@ -83,6 +86,7 @@ class BackController extends AbstractController
             throw new \Exception("Ce post n'existe pas");
         }
     }
+
 
     public function dashboard()
     {
@@ -112,7 +116,32 @@ class BackController extends AbstractController
         $this->renderView('backend/listComments', ['listComments' => $this->commentManager->getListReportedComments()]);
     }
 
+    public function editPassword()
+    {
+        $this->checkAuthentication();
 
+        if(isset($_POST['editPassword'])){
+
+            $user = $_SESSION['user'];
+            $ancientPassword = $_POST['ancient_password'];
+            $newPassword = $_POST['new_password'];
+            $repeatNewPassword = $_POST['repeat_new_password'];
+
+
+            if ($newPassword == $repeatNewPassword) {
+                if(password_verify($ancientPassword, $user['password']))
+                {
+                    $this->userManager->changePassword($newPassword,$user['id']);
+                }
+                else{
+                    echo "Ancient mot de passe ne correspondent pas !";
+                }
+            }else{
+                echo "Vos mots de passes ne correspondent pas !";
+            }
+        }
+        $this->renderView('backend/editPassword');
+    }
 
     public function validateComment()
     {
@@ -133,8 +162,10 @@ class BackController extends AbstractController
         }
     }
 
+
     public function listPostsAdmin()
     {
+        $this->checkAuthentication();
         $this->renderView('backend/listPostsAdmin', [
             'posts' => $this->postManager->getPosts()
         ]);
@@ -160,6 +191,7 @@ class BackController extends AbstractController
             throw new \Exception("Ce post n'existe pas");
         }
     }
+
 
     public function createPost()
     {
@@ -187,6 +219,7 @@ class BackController extends AbstractController
 
     private function checkAuthentication()
     {
+
         if (!isset($_SESSION['user'])) {
             $this->redirect('login');
         }
