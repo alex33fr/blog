@@ -79,10 +79,10 @@ class BackController extends AbstractController
         $this->checkAuthentication();
         $post = $this->postManager->getPost($_GET['id']);
 
-        if($post){
+        if ($post) {
             $this->postManager->deletePost($post['id']);
             $this->redirect('listPostsAdmin');
-        }else{
+        } else {
             throw new \Exception("Ce post n'existe pas");
         }
     }
@@ -101,17 +101,18 @@ class BackController extends AbstractController
         $id = $_GET['id'];
         $com = $this->commentManager->getComment($id);
 
-        if($com){
+        if ($com) {
             $this->commentManager->deleteComment($com['id']);
             $this->redirect('listComments');
-        }else{
+        } else {
             throw new \Exception("Ce commentaire n'existe pas");
         }
 
     }
 
 
-    public function listComments(){
+    public function listComments()
+    {
         $this->checkAuthentication();
         $this->renderView('backend/listComments', ['listComments' => $this->commentManager->getListReportedComments()]);
     }
@@ -120,7 +121,9 @@ class BackController extends AbstractController
     {
         $this->checkAuthentication();
 
-        if(isset($_POST['editPassword'])){
+        $message = "";
+
+        if (isset($_POST['editPassword'])) {
 
             $user = $_SESSION['user'];
             $ancientPassword = $_POST['ancient_password'];
@@ -129,18 +132,17 @@ class BackController extends AbstractController
 
 
             if ($newPassword == $repeatNewPassword) {
-                if(password_verify($ancientPassword, $user['password']))
-                {
-                    $this->userManager->changePassword($newPassword,$user['id']);
+                if (password_verify($ancientPassword, $user['password'])) {
+                    $this->userManager->changePassword($newPassword, $user['id']);
+                    $message = "Mot de passe modifié ! ";
+                } else {
+                    $message = "Ancient mot de passe ne correspondent pas !";
                 }
-                else{
-                    echo "Ancient mot de passe ne correspondent pas !";
-                }
-            }else{
-                echo "Vos mots de passes ne correspondent pas !";
+            } else {
+                $message =  "Vos mots de passes ne correspondent pas !";
             }
         }
-        $this->renderView('backend/editPassword');
+        $this->renderView('backend/editPassword', ['message' => $message]);
     }
 
     public function validateComment()
@@ -149,14 +151,14 @@ class BackController extends AbstractController
 
         $id = $_GET['id'];
         $com = $this->commentManager->getComment($id);
-        if($com){
-            if($this->commentManager->resetCounter($id)){
+        if ($com) {
+            if ($this->commentManager->resetCounter($id)) {
                 $this->commentManager->validateComment($id);
-                $this->redirect('listComments', ['id' => $com['post_id'] ]);
-            }else{
+                $this->redirect('listComments', ['id' => $com['post_id']]);
+            } else {
                 throw new \Exception('Impossible d\'Aprouver le commentaire !');
             }
-        }else{
+        } else {
             throw new \Exception('Le commentaire inexistant');
 
         }
@@ -176,18 +178,18 @@ class BackController extends AbstractController
         $this->checkAuthentication();
 
         $post = $this->postManager->getPost($_GET['id']);
-        if($post){
-            if(isset($_POST['title']) && isset($_POST['contents'])) {
+        if ($post) {
+            if (isset($_POST['title']) && isset($_POST['contents'])) {
                 $title = $_POST['title'];
                 $contents = $_POST['contents'];
 
                 $this->postManager->editPost($post['id'], $title, $contents);
                 $this->redirect('post', ['id' => $post['id']]);
-            }else{
+            } else {
                 $this->renderView('backend/editPost', ['data' => $post]);
 
             }
-        }else{
+        } else {
             throw new \Exception("Ce post n'existe pas");
         }
     }
@@ -197,11 +199,11 @@ class BackController extends AbstractController
     {
         $this->checkAuthentication();
 
-        if(isset($_POST['title']) && isset($_POST['contents'])){
+        if (isset($_POST['title']) && isset($_POST['contents'])) {
 
             $title = $_POST['title'];
             $contents = $_POST['contents'];
-            $affectedLines = $this->postManager->addPost($_SESSION['user'],$title,$contents);
+            $affectedLines = $this->postManager->addPost($_SESSION['user'], $title, $contents);
 
             if ($affectedLines === false) {
                 throw new \Exception('Impossible d\'ajouter le post !');

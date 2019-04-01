@@ -10,6 +10,8 @@
 <?php $title = 'Changer mot de passe'; ?>
 <?php ob_start(); ?>
 
+ <p><?= $message ?></p>
+
 <form class="form" method="POST">
     <div class="form-group">
         <label for="ancient_password">Ancien mot de passe</label>

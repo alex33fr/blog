@@ -7,7 +7,7 @@
  */
 
 require 'config/config.php';
-require 'Framework\Autoloader.php';
+require 'Framework/Autoloader.php';
 \Blog\Framework\Autoloader::register();
 
 session_start();
