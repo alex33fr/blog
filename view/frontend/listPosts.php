@@ -21,7 +21,6 @@
                 </div>
                 <div class="text-right">
                     <a href="index.php?action=post&amp;id=<?= htmlspecialchars($data['id']) ?>" class="btn btn-primary">Commenter</a>
-
                 </div>
                 <div class="text-muted text-center">
                     <p><small>#Posté le &nbsp;<?= htmlspecialchars($data['date_create_fr']); ?></small></p>

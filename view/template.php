@@ -44,10 +44,6 @@
                     <a class="nav-link" href="<?= BASE_URL ?>?action=login">Se connecter</a>
                 </li>
                 <?php else: ?>
-                    <!-- Formulaire d'inscription
-                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>?action=register">S'enregistrer</a>
-                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL ?>?action=logout">Se déconnecter</a>
                     </li>
@@ -111,7 +107,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright mt-3 text-muted">Copyright &copy; Blog Jean Forteroche <?php $date = date("Y"); echo $date;?></p>
+                <p class="copyright mt-3 text-muted">Copyright &copy; Blog Jean Forteroche <?php htmlspecialchars($date = date("Y")); echo $date;?></p>
 
             </div>
         </div>

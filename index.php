@@ -31,7 +31,9 @@ try {
         case 'addComment':
             $frontController->addComment();
             break;
-        /*case 'register':
+        /*
+        Action d'inscription, non utilisée
+        case 'register':
             $backController->register();
             break;
         */

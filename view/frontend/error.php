@@ -10,7 +10,7 @@
 <?php ob_start(); ?>
 
     <h1>Une erreur</h1>
-    <p> <?= $errorMessage ?></p>
+    <p> <?= htmlspecialchars($errorMessage) ?></p>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/template.php'); ?>

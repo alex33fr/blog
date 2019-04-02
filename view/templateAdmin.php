@@ -37,9 +37,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <!--  <li>  -->
+
+                <!-- Lien d'inscription, non utilisée <li>  -->
                     <!--       <a class="nav-link" href="<?= BASE_URL ?>?action=register">Créer l'utilisateur</a> -->
                 <!--  </li> -->
+
                 <li>
                     <a class="nav-link" href="<?= BASE_URL ?>?action=listComments">Commentaire signalées</a>
                 </li>

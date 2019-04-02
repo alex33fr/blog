@@ -57,7 +57,6 @@ class FrontController extends AbstractController
         $comment = $_POST['comment'];
         $postId = $_GET['id'];
 
-        //REGLES de validations
         if (empty($author)) {
             throw new \Exception("Parametre Author manquant");
         }

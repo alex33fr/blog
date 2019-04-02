@@ -6,8 +6,10 @@
  * Time: 22:20
  */
 /*
-?>
-<!--
+
+<!-- View Register, non utilisée
+
+
 <?php $title = "S'enregister"; ?>
 <?php ob_start(); ?>
 

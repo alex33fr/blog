@@ -37,15 +37,19 @@ class UserManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT * FROM user WHERE email =:email");
         $req->execute(['email'=>$email]);
+
         return $req->fetch();
     }
+
     public function getUserChangePassword($id){
 
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT * FROM user WHERE id =:id");
         $req->execute(['id'=>$id]);
+
         return $req->fetch();
     }
+
     public function changePassword($newPassword,$id)
     {
 

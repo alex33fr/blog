@@ -27,16 +27,6 @@ class PostManager extends Manager
         return $req;
     }
 
-    public function getPost($postId){
-
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, contents, DATE_FORMAT(date_create, \'%d/%m/%Y à %Hh%imin%ss\') AS date_create_fr FROM tickets WHERE id = ? ');
-        $req->execute(array($postId));
-        $post = $req->fetch();
-
-        return $post;
-    }
-
     public function editPost($id,$title,$contents){
 
         $db = $this->dbConnect();
@@ -53,7 +43,16 @@ class PostManager extends Manager
         $req = $db->prepare('DELETE FROM tickets WHERE id = :id');
 
         return $req->execute(['id' => $id]);
-
-
     }
+
+    public function getPost($postId){
+
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, contents, DATE_FORMAT(date_create, \'%d/%m/%Y à %Hh%imin%ss\') AS date_create_fr FROM tickets WHERE id = ? ');
+        $req->execute(array($postId));
+        $post = $req->fetch();
+        return $post;
+    }
+
+
 }

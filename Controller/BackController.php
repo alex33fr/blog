@@ -24,7 +24,7 @@ class BackController extends AbstractController
         $this->userManager = new UserManager();
     }
 
-    /* Inscription
+    /* Fonction d'inscription, non utilisée
 
     public function register()
     {

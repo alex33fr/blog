@@ -70,14 +70,16 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong><?= htmlspecialchars($comment['author']) ?></strong></h5>
                         <p class="card-text mb-5"><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+
                         <?php if ($comment['validate_comment'] == 0): ?>
-                            <!-- signaler le commentaire -->
+                            <!-- bouton signaler le commentaire -->
                             <form action="<?= BASE_URL ?>?action=reportComment&id=<?= $comment['id'] ?>" method="post">
                                 <div>
                                     <button type="submit" class="btn btn-warning">Signaler le commentaire</button>
                                 </div>
                             </form>
                         <?php endif; ?>
+                        <!-- afficher texte commentaire vérifié -->
                         <?php if ($comment['validate_comment'] == 1): ?>
                             <div class="alert alert-success col-md-3 text-center text-muted" role="alert">
                                 Commentaire vérifié
@@ -85,7 +87,7 @@
                         <?php endif; ?>
                         <div class="text-muted">
                             <p>
-                                <small>#Posté le&nbsp;<?= $comment['comment_date_fr'] ?></small>
+                                <small>#Posté le&nbsp;<?= htmlspecialchars($comment['comment_date_fr']) ?></small>
                             </p>
                         </div>
                     </div>
