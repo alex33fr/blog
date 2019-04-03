@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="contents" class="text-muted">Contenu du Post</label>
-                    <textarea class="form-control form-control-lg editor" id="contents" minlength="3" name="contents" rows="3" required></textarea>
+                    <textarea class="form-control form-control-lg editor" id="contents" minlength="3" name="contents" rows="3"></textarea>
                 </div>
 
                 <div class="text-center">
